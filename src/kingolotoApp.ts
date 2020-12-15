@@ -12,7 +12,6 @@ export class KingolotoApp {
         baseURL: 'https://app.kingoloto.com',
         withCredentials: true,
     });
-    private user?: User;
     private idJoueur?: number;
 
     private constructor(
@@ -46,7 +45,7 @@ export class KingolotoApp {
             });
     }
 
-    public async userInformations(): Promise<User | undefined>
+    public userInformations(): void
     {
         const postData = JSON.stringify({
             id: this.idJoueur,
@@ -56,11 +55,7 @@ export class KingolotoApp {
                 'Content-Length': postData.length,
                 'Content-Type': 'application/json',
             }};
-        await this.axiosInstance.post(this.uri.showUser, postData, axiosConfig)
-            .then(response => {
-                return new User();
-            }).catch(e => console.log(e));
-        return this.user;
+        this.axiosInstance.post(this.uri.showUser, postData, axiosConfig)
     }
 
     private async connect(): Promise<KingolotoApp>
