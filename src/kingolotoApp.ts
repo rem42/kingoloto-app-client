@@ -30,7 +30,7 @@ export class KingolotoApp {
     public async playGrid(): Promise<boolean>
     {
         const randomFruit = Math.floor(Math.random() * 10) + 1;
-        const goodNumbers = "[\"" + Grid.generate.join("\",\"") + "\"]";
+        const goodNumbers = '["' + Grid.generate.join('","') + '"]';
         const postData = JSON.stringify({
             'good_fruit_id': randomFruit.toString(),
             'good_numbers': goodNumbers,
